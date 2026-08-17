@@ -110,6 +110,8 @@ code {
   gap: 1.4rem;
   font-size: 0.9rem;
 }
+/* No tagline: the nav would otherwise crowd the title. */
+.site-header h1 + .nav { margin-top: 1.75rem; }
 .nav a {
   color: var(--ink-soft);
   border-bottom: 1px solid transparent;

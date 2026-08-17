@@ -14,7 +14,7 @@ Blank lines separate paragraphs in multi-paragraph fields.
 COURSE = {
     "number": "TBD",                       # e.g. "IEOR E4650"
     "title": "Anticipating Our AGI Future",
-    "tagline": "Growth, forecasting, and the economics of transformative AI.",
+    "tagline": "",                         # subtitle under the title; "" hides it
     "term": "Fall 2026",
     "institution": "Columbia University",
     # Shown in the browser tab and in link previews.
@@ -55,12 +55,8 @@ FACTS = [
     ("Format",     "A few technical weeks, then seminar-style discussion and a final project"),
 ]
 
-# Short notices that appear right under the header. Delete the list to hide it.
-NOTICES = [
-    "**Fall 2026 — enrollment details coming soon.** The week-by-week schedule is "
-    "still being finalized and will be posted here. Questions in the meantime? Email "
-    "[sy2737@columbia.edu](mailto:sy2737@columbia.edu).",
-]
+# Short notices that appear right under the header. Empty list = no banner.
+NOTICES = []
 
 # --------------------------------------------------------------------------
 # Description

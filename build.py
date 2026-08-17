@@ -324,7 +324,7 @@ def build():
   <div class="wrap">
     <p class="eyebrow">{institution} · {term}{numsep}</p>
     <h1>{title}</h1>
-    <p class="tagline">{tagline}</p>
+    {tagline}
     <nav class="nav">{nav}</nav>
   </div>
 </header>
@@ -435,7 +435,11 @@ def build():
         numsep=html.escape(" · " + c["number"]) if number else "",
         term=html.escape(c["term"]),
         institution=html.escape(c["institution"]),
-        tagline=html.escape(c["tagline"]),
+        tagline=(
+            '<p class="tagline">%s</p>' % html.escape(c["tagline"])
+            if c.get("tagline")
+            else ""
+        ),
         meta=html.escape(c["meta_description"]),
         nav=navhtml,
         notices=render_notices(),
