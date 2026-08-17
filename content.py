@@ -62,30 +62,29 @@ NOTICES = []
 # Description
 # --------------------------------------------------------------------------
 
+# The About section reads: DESCRIPTION, then LEAD_IN, then QUESTIONS,
+# then DESCRIPTION_AFTER.
+
 DESCRIPTION = """
-Almost everyone has an opinion about where AI is going. Very few of those opinions
-are attached to a model you can write down, argue with, and check against data.
-This course is an attempt to fix that.
-
-We invite students to think hard about the future growth and impact of AI using
-tools from economics, finance, statistics, and operations research. We start with
-the technical content you need to have an informed view — how frontier models are
-actually trained, why their capabilities scale predictably, and what a capability
-measurement is really measuring. From there the course is largely discussion and
-participation-based, working through the serious quantitative literature on
-takeoff, growth, and labor, and ending in a research project of your own.
-
-You will not leave with a confident forecast. You should leave able to tell a
-rigorous argument from a compelling one, and able to build your own.
+There is a lot of excitement and concerns around the rate of progress in AI systems.
 """
 
+LEAD_IN = "Questions we will potentially explore together"
+
 QUESTIONS = [
-    "How much is the world spending on AI, and what is it buying?",
-    "How fast is AI research progressing, and how would we know?",
-    "Under what conditions does automating AI R&D produce explosive growth?",
-    "Which industries get transformed first, and why do diffusion lags exist?",
-    "Under what conditions is a coordinated slowdown even possible from a game-theoretic perspective?",
+    "How much of the world is using AI, how much of the world has not used AI?",
+    "How many datacenters are we building? Are space datacenters going to be a real thing?",
+    "How fast will AI systems improve? What are the bottlenecks?",
+    "What does the future of work look like? Will human labor be optional?",
+    "What is RSI, and what does it mean for AI progress?",
 ]
+
+DESCRIPTION_AFTER = """
+We will start with basic technical contents on how frontier models are trained and
+evaluated. From there the class will be largely discussion and participation-based,
+with a final project. We hope to have multiple guest speakers from frontier labs
+throughout the semester.
+"""
 
 PREREQS = """
 This course is intended for graduate and advanced undergraduate students.

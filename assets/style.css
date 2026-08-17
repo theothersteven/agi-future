@@ -190,6 +190,9 @@ h3.sub {
   left: 0;
   color: var(--ink-faint);
 }
+/* Prose that follows the question list needs its own breathing room —
+   the list itself carries no bottom margin. */
+.questions + p { margin-top: 1.85rem; }
 
 /* ---------------------------------------------------------------- facts */
 

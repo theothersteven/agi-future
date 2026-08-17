@@ -336,8 +336,9 @@ def build():
   <section id="about">
     <h2 class="rule">About the course</h2>
     {description}
-    <p class="lead-in">Questions we will try to answer:</p>
+    <p class="lead-in">{lead_in}</p>
     <ul class="questions">{questions}</ul>
+    {description_after}
   </section>
 
 {outline_section}{logistics_section}{speakers_section}{project_section}
@@ -444,7 +445,9 @@ def build():
         nav=navhtml,
         notices=render_notices(),
         description=paragraphs(content.DESCRIPTION),
+        lead_in=md(getattr(content, "LEAD_IN", "")),
         questions="".join("<li>%s</li>" % md(q) for q in content.QUESTIONS),
+        description_after=paragraphs(getattr(content, "DESCRIPTION_AFTER", "")),
         outline_section=outline_section,
         logistics_section=logistics_section,
         speakers_section=speakers_section,
