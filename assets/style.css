@@ -435,23 +435,32 @@ h3.sub {
 
 /* ---------------------------------------------------------------- bibliography */
 
-.bibliography { list-style: none; padding: 0; margin: 0; counter-reset: none; }
+.bibliography {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--rule-soft);
+}
 .bibliography li {
-  position: relative;
-  padding: 0.5rem 0 0.5rem 2.4rem;
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 1rem;
+  padding: 0.55rem 0;
   border-bottom: 1px solid var(--rule-soft);
   font-size: 0.95rem;
   line-height: 1.5;
 }
 .bibliography li::before { display: none; }
-.refnum {
-  position: absolute;
-  left: 0;
+
+.refdate {
   color: var(--ink-faint);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
-  padding-top: 0.15em;
+  white-space: nowrap;
+  padding-top: 0.1em;
 }
+.reftitle { border-bottom-color: transparent; }
+.reftitle:hover { border-bottom-color: var(--accent); }
 
 /* ---------------------------------------------------------------- project */
 
@@ -474,6 +483,7 @@ h3.sub {
 @media (max-width: 34rem) {
   body { font-size: 16px; }
   .site-header { padding-top: 2.75rem; }
+  .bibliography li { grid-template-columns: 1fr; gap: 0.15rem; padding: 0.7rem 0; }
   .session { grid-template-columns: 1fr; gap: 0.5rem; }
   .s-date { flex-direction: row; gap: 0.5rem; align-items: baseline; }
   .fact { grid-template-columns: 1fr; gap: 0.1rem; padding: 0.7rem 0; }

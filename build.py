@@ -74,23 +74,27 @@ def slug(s):
 
 # ---------------------------------------------------------------- section HTML
 
-def render_reading(key, numbered=None):
+def pretty_date(iso):
+    """'2026-07' -> 'Jul 2026'; a bare '2026' passes through."""
+    parts = iso.split("-")
+    if len(parts) == 1:
+        return parts[0]
+    d = datetime.date(int(parts[0]), int(parts[1]), 1)
+    return d.strftime("%b %Y")
+
+
+def render_reading(key):
+    """Reading list rows: date, then the title as the link. No authors."""
     r = content.READINGS[key]
-    bits = []
-    if r.get("authors"):
-        bits.append(html.escape(r["authors"]))
-    if r.get("year"):
-        bits.append(html.escape(r["year"]))
-    byline = ", ".join(bits)
-    title = '<a href="%s">%s</a>' % (html.escape(r["url"]), html.escape(r["title"]))
-    venue = (
-        ' <span class="venue">%s</span>' % html.escape(r["venue"])
-        if r.get("venue")
-        else ""
+    return (
+        '<li><span class="refdate">%s</span>'
+        '<a class="reftitle" href="%s">%s</a></li>'
+        % (
+            html.escape(pretty_date(r["date"])),
+            html.escape(r["url"]),
+            html.escape(r["title"]),
+        )
     )
-    lead = '<span class="byline">%s.</span> ' % byline if byline else ""
-    num = '<span class="refnum">%s</span>' % numbered if numbered else ""
-    return "<li>%s%s%s%s</li>" % (num, lead, title, venue)
 
 
 def render_session(s, n):
@@ -164,17 +168,13 @@ def render_schedule():
 
 
 def render_bibliography():
-    used, seen = [], set()
-    for u in content.UNITS:
-        for s in u["sessions"]:
-            for k in s.get("readings", []):
-                if k not in seen:
-                    seen.add(k)
-                    used.append(k)
-    for k in content.READINGS:
-        if k not in seen:
-            used.append(k)
-    return "".join(render_reading(k, numbered=i + 1) for i, k in enumerate(used))
+    """Every reading, newest first. Flip reverse=False for oldest first."""
+    keys = sorted(
+        content.READINGS,
+        key=lambda k: (content.READINGS[k]["date"], content.READINGS[k]["title"]),
+        reverse=True,
+    )
+    return "".join(render_reading(k) for k in keys)
 
 
 def render_facts():
@@ -243,15 +243,60 @@ def build():
     number = (" " + c["number"]) if c["number"] and c["number"] != "TBD" else ""
     page_title = "%s%s — %s" % (c["title"], number, c["term"])
 
-    nav = [
-        ("About", "#about"),
-        ("Outline", "#outline"),
-        ("Logistics", "#logistics"),
-        ("Project", "#project"),
-        ("Readings", "#readings"),
-        ("Instructor", "#instructor"),
-    ]
+    show = getattr(content, "SHOW", {})
+    nav = [("About", "#about")]
+    if show.get("outline"):
+        nav.append(("Outline", "#outline"))
+    if show.get("logistics"):
+        nav.append(("Logistics", "#logistics"))
+    if show.get("project"):
+        nav.append(("Project", "#project"))
+    nav += [("Readings", "#readings"), ("Instructor", "#instructor")]
     navhtml = "".join('<a href="%s">%s</a>' % (h, t) for t, h in nav)
+
+    outline_section = ""
+    if show.get("outline"):
+        outline_section = """
+  <section id="outline">
+    <h2 class="rule">Course outline</h2>
+    <p class="section-note">Four parts, roughly one topic per week. Meeting dates
+    will be filled in once the schedule is set; the readings listed are the ones
+    each topic is built around.</p>
+    %s
+  </section>
+""" % render_schedule()
+
+    logistics_section = ""
+    if show.get("logistics"):
+        logistics_section = """
+  <section id="logistics">
+    <h2 class="rule">Logistics</h2>
+    <dl class="facts">%s</dl>
+
+    <h3 class="sub">Prerequisites</h3>
+    %s
+
+    <h3 class="sub">Grading</h3>
+    <div class="grading">%s</div>
+
+    <h3 class="sub">Guest speakers</h3>
+    %s
+  </section>
+""" % (
+            render_facts(),
+            paragraphs(content.PREREQS),
+            render_grading(),
+            render_speakers(),
+        )
+
+    project_section = ""
+    if show.get("project"):
+        project_section = """
+  <section id="project">
+    <h2 class="rule">Final project</h2>
+    %s
+  </section>
+""" % paragraphs(content.PROJECT)
 
     doc = """<!DOCTYPE html>
 <html lang="en">
@@ -288,38 +333,12 @@ def build():
     <ul class="questions">{questions}</ul>
   </section>
 
-  <section id="outline">
-    <h2 class="rule">Course outline</h2>
-    <p class="section-note">Four parts, roughly one topic per week. Meeting dates
-    will be filled in once the schedule is set; the readings listed are the ones
-    each topic is built around.</p>
-    {schedule}
-  </section>
-
-  <section id="logistics">
-    <h2 class="rule">Logistics</h2>
-    <dl class="facts">{facts}</dl>
-
-    <h3 class="sub">Prerequisites</h3>
-    {prereqs}
-
-    <h3 class="sub">Grading</h3>
-    <div class="grading">{grading}</div>
-
-    <h3 class="sub">Guest speakers</h3>
-    {speakers}
-  </section>
-
-  <section id="project">
-    <h2 class="rule">Final project</h2>
-    {project}
-  </section>
-
+{outline_section}{logistics_section}{project_section}
   <section id="readings">
     <h2 class="rule">Readings</h2>
-    <p class="section-note">The pool the course draws from, in roughly the order we
-    meet it. Not everything here is assigned — but if any of it looks interesting,
-    this is the right class for you.</p>
+    <p class="section-note">The pool the course draws from, newest first. Not
+    everything here will be assigned — but if any of it looks interesting, this is
+    the right class for you.</p>
     <ol class="bibliography">{bibliography}</ol>
   </section>
 
@@ -337,6 +356,70 @@ def build():
   </div>
 </footer>
 
+<script>
+// Quick eased scroll for in-page nav links, so it reads as one continuous page
+// rather than a jump-cut. Falls back to an instant jump if the visitor has asked
+// for reduced motion.
+(function () {{
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function easeInOutCubic(t) {{
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }}
+
+  document.addEventListener('click', function (e) {{
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+
+    var link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    var id = link.getAttribute('href').slice(1);
+    var target = id && document.getElementById(id);
+    if (!target) return;
+
+    e.preventDefault();
+
+    var start = window.pageYOffset;
+    var end = Math.min(
+      target.getBoundingClientRect().top + start - 16,
+      document.body.scrollHeight - window.innerHeight
+    );
+    var distance = end - start;
+
+    var finished = false;
+    function done() {{
+      if (finished) return;
+      finished = true;
+      window.scrollTo(0, end);
+      history.replaceState(null, '', '#' + id);
+      target.setAttribute('tabindex', '-1');
+      target.focus({{ preventScroll: true }});
+    }}
+
+    if (reduced.matches || Math.abs(distance) < 2) {{
+      done();
+      return;
+    }}
+
+    // Fast: 240ms minimum, scaling with distance but capped at 480ms.
+    var duration = Math.min(480, Math.max(240, Math.abs(distance) * 0.25));
+    var t0 = performance.now();
+
+    // rAF is throttled in background tabs; this guarantees we land on target
+    // even if the animation never gets to run.
+    setTimeout(done, duration + 250);
+
+    requestAnimationFrame(function step(now) {{
+      if (finished) return;
+      var p = Math.min(1, (now - t0) / duration);
+      window.scrollTo(0, start + distance * easeInOutCubic(p));
+      if (p < 1) requestAnimationFrame(step);
+      else done();
+    }});
+  }});
+}})();
+</script>
+
 </body>
 </html>
 """.format(
@@ -352,12 +435,9 @@ def build():
         notices=render_notices(),
         description=paragraphs(content.DESCRIPTION),
         questions="".join("<li>%s</li>" % md(q) for q in content.QUESTIONS),
-        facts=render_facts(),
-        prereqs=paragraphs(content.PREREQS),
-        grading=render_grading(),
-        speakers=render_speakers(),
-        schedule=render_schedule(),
-        project=paragraphs(content.PROJECT),
+        outline_section=outline_section,
+        logistics_section=logistics_section,
+        project_section=project_section,
         bibliography=render_bibliography(),
         instructor_block=render_instructor(),
         instructor=html.escape(content.INSTRUCTOR["name"]),

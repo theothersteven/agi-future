@@ -30,9 +30,18 @@ INSTRUCTOR = {
     "twitter": "https://x.com/stevenydc",   # shown as @stevenydc
     "url": "",                              # optional homepage
     "bio": (
-        "I work on the economics of AI. The best way to reach me about the course "
-        "is email; I post about most of these topics on [X](https://x.com/stevenydc)."
+        "I lead Midtraining and STEM RL at SpaceXAI. Previously I led the Meta "
+        "Learning team at OpenAI. Before that I did High Frequency Trading at "
+        "Hudson River Trading."
     ),
+}
+
+# Which sections render. The week-by-week outline is written and waiting in UNITS
+# below — flip "outline" to True to bring it back once the schedule is final.
+SHOW = {
+    "outline": False,
+    "logistics": True,
+    "project": True,
 }
 
 # Left column = label, right column = value. Values support links/markup.
@@ -47,9 +56,8 @@ FACTS = [
 
 # Short notices that appear right under the header. Delete the list to hide it.
 NOTICES = [
-    "**Fall 2026 — enrollment details coming soon.** This page is a living draft: "
-    "the outline below is close to final, but readings, meeting times, and guest "
-    "speakers will keep changing. Questions? Email "
+    "**Fall 2026 — enrollment details coming soon.** The week-by-week schedule is "
+    "still being finalized and will be posted here. Questions in the meantime? Email "
     "[sy2737@columbia.edu](mailto:sy2737@columbia.edu).",
 ]
 
@@ -124,132 +132,131 @@ presentation in the final weeks. Groups of one to three. Details will be posted 
 # --------------------------------------------------------------------------
 
 READINGS = {
-    "davidson2026": {
-        "authors": "Davidson, Halperin, Houlden & Korinek",
-        "year": "2026",
-        "title": "When Does Automating AI Research Produce Explosive Growth?",
-        "url": "https://thomas-houlden.com/assets/Davidson,%20Halperin,%20Houlden,%20and%20Korinek%20(2026).pdf",
+    "ai2040": {
+        "date": "2026-07",
+        "title": "AI 2040: Plan A",
+        "url": "https://ai-2040.com/",
+        "authors": "AI Futures Project",
     },
     "rsi": {
-        "authors": "Elasticity Institute",
-        "year": "",
-        "title": "Economics of Recursive Self-Improvement",
+        "date": "2026-07",
+        "title": "The Economics of Recursive Self-Improvement",
         "url": "https://elasticity.institute/rsi-paper.pdf",
-    },
-    "ai2027": {
-        "authors": "Kokotajlo et al.",
-        "year": "",
-        "title": "AI 2027",
-        "url": "https://ai-2027.com/",
-    },
-    "ai2040": {
-        "authors": "",
-        "year": "",
-        "title": "AI 2040",
-        "url": "https://ai-2040.com/",
+        "authors": "Cunningham & Althoff (Elasticity Institute)",
     },
     "trammell_labor": {
-        "authors": "Trammell",
-        "year": "",
+        "date": "2026-05",
         "title": "Is Labor a Luxury in the Long Run?",
         "url": "https://www.forethought.org/research/is-labor-a-luxury-in-the-long-run",
-        "venue": "Forethought",
-    },
-    "normal_tech": {
-        "authors": "Narayanan & Kapoor",
-        "year": "",
-        "title": "AI as Normal Technology",
-        "url": "https://www.aisnakeoil.com/p/ai-as-normal-technology",
-    },
-    "openrouter": {
-        "authors": "Aubakirova, Atallah, Clark, Summerville & Midha",
-        "year": "2026",
-        "title": "State of AI: An Empirical 100 Trillion Token Study with OpenRouter",
-        "url": "https://arxiv.org/abs/2601.10088",
-    },
-    "metr_horizon": {
-        "authors": "METR",
-        "year": "2025",
-        "title": "Measuring AI Ability to Complete Long Tasks",
-        "url": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
-    },
-    "metr_rct": {
-        "authors": "METR",
-        "year": "2025",
-        "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
-        "url": "https://arxiv.org/abs/2507.09089",
-    },
-    "gate": {
-        "authors": "Epoch AI",
-        "year": "",
-        "title": "GATE: Modeling the Trajectory of AI and Automation",
-        "url": "https://epoch.ai/blog/announcing-gate",
-    },
-    "ai2030": {
-        "authors": "Epoch AI",
-        "year": "",
-        "title": "AI in 2030",
-        "url": "https://epoch.ai/files/AI_2030.pdf",
-    },
-    "chinchilla": {
-        "authors": "Hoffmann et al.",
-        "year": "2022",
-        "title": "Training Compute-Optimal Large Language Models (Chinchilla)",
-        "url": "https://arxiv.org/abs/2203.15556",
-    },
-    "ajj": {
-        "authors": "Aghion, Jones & Jones",
-        "year": "",
-        "title": "Artificial Intelligence and Economic Growth",
-        "url": "https://web.stanford.edu/~chadj/AJJ-AIandGrowth.pdf",
-    },
-    "jones_dilemma": {
-        "authors": "Jones",
-        "year": "",
-        "title": "The A.I. Dilemma: Growth versus Existential Risk",
-        "url": "https://web.stanford.edu/~chadj/existentialrisk.pdf",
-    },
-    "erdil": {
-        "authors": "Erdil & Besiroglu",
-        "year": "2023",
-        "title": "Explosive Growth from AI Automation: A Review of the Arguments",
-        "url": "https://arxiv.org/abs/2309.11690",
-    },
-    "gpts": {
-        "authors": "Eloundou et al.",
-        "year": "2023",
-        "title": "GPTs are GPTs: An Early Look at the Labor Market Impact Potential of LLMs",
-        "url": "https://arxiv.org/abs/2303.10130",
-    },
-    "canaries": {
-        "authors": "Brynjolfsson, Chandar & Chen",
-        "year": "2025",
-        "title": "Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of AI",
-        "url": "https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf",
-    },
-    "chatgpt_usage": {
-        "authors": "Chatterji et al.",
-        "year": "",
-        "title": "How People Use ChatGPT",
-        "url": "https://cdn.openai.com/pdf/a253471f-8260-40c6-a2cc-aa93fe9f142e/economic-research-chatgpt-usage-paper.pdf",
-    },
-    "agi_emh": {
-        "authors": "Chow, Halperin & Mazlish",
-        "year": "",
-        "title": "Transformative AI, Existential Risk, and Real Interest Rates",
-        "url": "https://www.basilhalperin.com/papers/agi_emh.pdf",
-    },
-    "capital22": {
-        "authors": "Trammell & Patel",
-        "year": "",
-        "title": "Capital in the 22nd Century (excerpts)",
-        "url": "https://philiptrammell.substack.com/p/capital-in-the-22nd-century",
+        "authors": "Trammell",
     },
     "jobless": {
-        "authors": "Hall",
-        "year": "",
+        "date": "2026-05",
         "title": "The Politics of Jobless Prosperity",
         "url": "https://freesystems.substack.com/p/the-politics-of-jobless-prosperity",
+        "authors": "Hall",
+    },
+    "davidson2026": {
+        "date": "2026-04",
+        "title": "When Does Automating AI Research Produce Explosive Growth?",
+        "url": "https://thomas-houlden.com/assets/Davidson,%20Halperin,%20Houlden,%20and%20Korinek%20(2026).pdf",
+        "authors": "Davidson, Halperin, Houlden & Korinek",
+    },
+    "openrouter": {
+        "date": "2026-01",
+        "title": "State of AI: An Empirical 100 Trillion Token Study with OpenRouter",
+        "url": "https://arxiv.org/abs/2601.10088",
+        "authors": "Aubakirova, Atallah, Clark, Summerville & Midha",
+    },
+    "capital22": {
+        "date": "2025-12",
+        "title": "Capital in the 22nd Century",
+        "url": "https://philiptrammell.substack.com/p/capital-in-the-22nd-century",
+        "authors": "Trammell & Patel",
+    },
+    "ai2030": {
+        "date": "2025-09",
+        "title": "What Will AI Look Like in 2030?",
+        "url": "https://epoch.ai/files/AI_2030.pdf",
+        "authors": "Epoch AI",
+    },
+    "chatgpt_usage": {
+        "date": "2025-09",
+        "title": "How People Use ChatGPT",
+        "url": "https://cdn.openai.com/pdf/a253471f-8260-40c6-a2cc-aa93fe9f142e/economic-research-chatgpt-usage-paper.pdf",
+        "authors": "Chatterji et al.",
+    },
+    "agi_emh": {
+        "date": "2025-08",
+        "title": "Transformative AI, Existential Risk, and Real Interest Rates",
+        "url": "https://www.basilhalperin.com/papers/agi_emh.pdf",
+        "authors": "Chow, Halperin & Mazlish",
+    },
+    "canaries": {
+        "date": "2025-08",
+        "title": "Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of AI",
+        "url": "https://digitaleconomy.stanford.edu/wp-content/uploads/2025/08/Canaries_BrynjolfssonChandarChen.pdf",
+        "authors": "Brynjolfsson, Chandar & Chen",
+    },
+    "metr_rct": {
+        "date": "2025-07",
+        "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+        "url": "https://arxiv.org/abs/2507.09089",
+        "authors": "METR",
+    },
+    "ai2027": {
+        "date": "2025-04",
+        "title": "AI 2027",
+        "url": "https://ai-2027.com/",
+        "authors": "Kokotajlo et al.",
+    },
+    "normal_tech": {
+        "date": "2025-04",
+        "title": "AI as Normal Technology",
+        "url": "https://www.aisnakeoil.com/p/ai-as-normal-technology",
+        "authors": "Narayanan & Kapoor",
+    },
+    "gate": {
+        "date": "2025-03",
+        "title": "GATE: Modeling the Trajectory of AI and Automation",
+        "url": "https://epoch.ai/blog/announcing-gate",
+        "authors": "Epoch AI",
+    },
+    "metr_horizon": {
+        "date": "2025-03",
+        "title": "Measuring AI Ability to Complete Long Tasks",
+        "url": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+        "authors": "METR",
+    },
+    "jones_dilemma": {
+        "date": "2023-11",
+        "title": "The A.I. Dilemma: Growth versus Existential Risk",
+        "url": "https://web.stanford.edu/~chadj/existentialrisk.pdf",
+        "authors": "Jones",
+    },
+    "erdil": {
+        "date": "2023-09",
+        "title": "Explosive Growth from AI Automation: A Review of the Arguments",
+        "url": "https://arxiv.org/abs/2309.11690",
+        "authors": "Erdil & Besiroglu",
+    },
+    "gpts": {
+        "date": "2023-03",
+        "title": "GPTs are GPTs: An Early Look at the Labor Market Impact Potential of LLMs",
+        "url": "https://arxiv.org/abs/2303.10130",
+        "authors": "Eloundou et al.",
+    },
+    "chinchilla": {
+        "date": "2022-03",
+        "title": "Training Compute-Optimal Large Language Models (Chinchilla)",
+        "url": "https://arxiv.org/abs/2203.15556",
+        "authors": "Hoffmann et al.",
+    },
+    "ajj": {
+        "date": "2017-10",
+        "title": "Artificial Intelligence and Economic Growth",
+        "url": "https://web.stanford.edu/~chadj/AJJ-AIandGrowth.pdf",
+        "authors": "Aghion, Jones & Jones",
     },
 }
 
