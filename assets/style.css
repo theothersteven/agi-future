@@ -138,15 +138,17 @@ code {
 
 main section { margin-bottom: 4.25rem; }
 
+/* Section headers are the only grey prose on the page; everything a visitor
+   actually reads is --ink. Metadata (dates, bylines, footer) stays muted. */
 h2.rule {
   font-family: var(--sans);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  padding-bottom: 0.65rem;
-  margin: 0 0 1.6rem;
+  padding-bottom: 0.8rem;
+  margin: 0 0 1.9rem;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -159,16 +161,15 @@ h3.sub {
 }
 
 .section-note {
-  color: var(--ink-faint);
-  font-size: 0.92rem;
-  margin-bottom: 2rem;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
   max-width: 38rem;
 }
 
 .lead-in {
   margin-top: 1.75rem;
   margin-bottom: 0.6rem;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 
 .questions {
@@ -181,7 +182,7 @@ h3.sub {
   padding: 0.7rem 0 0.7rem 1.4rem;
   border-bottom: 1px solid var(--rule-soft);
   position: relative;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 .questions li::before {
   content: "→";
@@ -236,13 +237,12 @@ h3.sub {
 }
 .grade-body p {
   margin: 0;
-  color: var(--ink-soft);
-  font-size: 0.94rem;
+  color: var(--ink);
 }
 
 /* ---------------------------------------------------------------- speakers */
 
-.tbd { color: var(--ink-soft); }
+.tbd { color: var(--ink); }
 
 .speakers { list-style: none; padding: 0; margin: 1rem 0 0; }
 .speakers li {
@@ -285,8 +285,7 @@ h3.sub {
   margin: 0;
 }
 .unit-blurb {
-  color: var(--ink-soft);
-  font-size: 0.95rem;
+  color: var(--ink);
   max-width: 40rem;
   margin-bottom: 1.5rem;
 }
@@ -389,8 +388,7 @@ h3.sub {
 
 .s-summary {
   margin: 0.65rem 0 0;
-  color: var(--ink-soft);
-  font-size: 0.95rem;
+  color: var(--ink);
 }
 
 .s-readings { margin-top: 0.9rem; }
@@ -447,9 +445,8 @@ h3.sub {
   display: grid;
   grid-template-columns: 5.5rem 1fr;
   gap: 1rem;
-  padding: 0.55rem 0;
+  padding: 0.6rem 0;
   border-bottom: 1px solid var(--rule-soft);
-  font-size: 0.95rem;
   line-height: 1.5;
 }
 .bibliography li::before { display: none; }
@@ -467,7 +464,7 @@ h3.sub {
 /* ---------------------------------------------------------------- project */
 
 #project ul { padding-left: 1.15rem; }
-#project li { margin-bottom: 0.55rem; color: var(--ink-soft); }
+#project li { margin-bottom: 0.55rem; color: var(--ink); }
 #project li strong { color: var(--ink); }
 
 /* ---------------------------------------------------------------- footer */
