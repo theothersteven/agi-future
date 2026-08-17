@@ -70,18 +70,18 @@ DESCRIPTION = """
 There is a lot of excitement and concerns around the rate of progress in AI systems.
 """
 
-LEAD_IN = "Questions we will potentially explore together"
+LEAD_IN = "Questions we will potentially explore together:"
 
 QUESTIONS = [
-    "How much of the world is using AI, how much of the world has not used AI?",
-    "How many datacenters are we building? Are space datacenters going to be a real thing?",
+    "How much of the world is using AI, and how much has not used AI?",
+    "How many datacenters are we building? Will space datacenters be a real thing?",
     "How fast will AI systems improve? What are the bottlenecks?",
     "What does the future of work look like? Will human labor be optional?",
     "What is RSI, and what does it mean for AI progress?",
 ]
 
 DESCRIPTION_AFTER = """
-We will start with basic technical contents on how frontier models are trained and
+We will start with technical content on how frontier models are trained and
 evaluated. From there the class will be largely discussion and participation-based,
 with a final project. We hope to have multiple guest speakers from frontier labs
 throughout the semester.
@@ -93,7 +93,9 @@ AUDIENCE = [
      "We invite students from all departments to join our discussions!"),
     ("Prerequisites",
      "While there is no hard technical prerequisite, familiarity with machine "
-     "learning concepts (e.g. understands how transformers work) is highly useful."),
+     "learning concepts (e.g., understanding how transformers work) is highly "
+     "useful. We expect students to be able to pick up necessary technical "
+     "concepts as needed."),
 ]
 
 # Only used by the hidden Logistics section.
