@@ -23,15 +23,19 @@ and open <http://localhost:8000>.
 
 ### Common edits
 
-| I want to…                 | Do this in `content.py`                                                   |
-| -------------------------- | ------------------------------------------------------------------------- |
-| Fix the meeting time/room  | Edit `FACTS`                                                              |
-| Change the banner at top   | Edit `NOTICES` (or set it to `[]` to hide)                                |
-| Add a reading              | Add an entry to `READINGS` with a short key, then list that key in a session's `readings` |
-| Add or reorder a topic     | Edit `UNITS` → `sessions`                                                 |
-| Put real dates on the weeks| Add `"date": "2026-09-09"` to a session; the left column switches from "Week N" to the date automatically |
-| Announce a guest speaker   | Add a `("Name", "Affiliation", "When")` tuple to `SPEAKERS`               |
-| Post slides or notes       | Add `"links": [("Slides", "assets/wk1.pdf")]` to a session                |
+| I want to…                    | Do this in `content.py`                                                |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| Publish the week-by-week outline | Set `SHOW["outline"] = True`. The full outline is already written in `UNITS` — it is only hidden, not deleted. |
+| Hide the Logistics or Project section | Set `SHOW["logistics"]` / `SHOW["project"]` to `False`. Nav links follow automatically. |
+| Fix the meeting time/room     | Edit `FACTS`                                                           |
+| Change the banner at top      | Edit `NOTICES` (or set it to `[]` to hide)                             |
+| Add a reading                 | Add an entry to `READINGS` — a `date` (`"2026-07"`), `title`, and `url`. The reading list sorts itself, newest first. |
+| Show oldest readings first    | In `build.py`, `render_bibliography()` → `reverse=False`               |
+| Show authors in the list      | `render_reading()` in `build.py` — the `authors` field is still in the data, just not rendered |
+| Add or reorder a topic        | Edit `UNITS` → `sessions`                                              |
+| Put real dates on the weeks   | Add `"date": "2026-09-09"` to a session; the left column switches from "Week N" to the date automatically |
+| Announce a guest speaker      | Add a `("Name", "Affiliation", "When")` tuple to `SPEAKERS`            |
+| Post slides or notes          | Add `"links": [("Slides", "assets/wk1.pdf")]` to a session             |
 
 Text fields accept a little Markdown: `[text](url)`, `**bold**`, `*italic*`, `` `code` ``.
 
