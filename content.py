@@ -40,7 +40,7 @@ INSTRUCTOR = {
 # below — flip "outline" to True to bring it back once the schedule is final.
 SHOW = {
     "outline": False,
-    "logistics": True,
+    "logistics": False,   # facts table, prerequisites, grading, guest speakers
     "project": True,
 }
 
