@@ -40,7 +40,8 @@ INSTRUCTOR = {
 # below — flip "outline" to True to bring it back once the schedule is final.
 SHOW = {
     "outline": False,
-    "logistics": False,   # facts table, prerequisites, grading
+    "logistics": False,   # facts table, old prerequisites text, grading
+    "audience": True,
     "speakers": True,
     "project": True,
 }
@@ -62,8 +63,8 @@ NOTICES = []
 # Description
 # --------------------------------------------------------------------------
 
-# The About section reads: DESCRIPTION, then LEAD_IN, then QUESTIONS,
-# then DESCRIPTION_AFTER.
+# The About section reads: DESCRIPTION, then DESCRIPTION_AFTER, then LEAD_IN,
+# then QUESTIONS.
 
 DESCRIPTION = """
 There is a lot of excitement and concerns around the rate of progress in AI systems.
@@ -86,6 +87,16 @@ with a final project. We hope to have multiple guest speakers from frontier labs
 throughout the semester.
 """
 
+# Label / text rows for the "Audience and prerequisites" section.
+AUDIENCE = [
+    ("Audience",
+     "We invite students from all departments to join our discussions!"),
+    ("Prerequisites",
+     "While there is no hard technical prerequisite, familiarity with machine "
+     "learning concepts (e.g. understands how transformers work) is highly useful."),
+]
+
+# Only used by the hidden Logistics section.
 PREREQS = """
 This course is intended for graduate and advanced undergraduate students.
 Students should have a foundation in calculus, linear algebra, probability,

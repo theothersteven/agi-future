@@ -243,8 +243,11 @@ def build():
     number = (" " + c["number"]) if c["number"] and c["number"] != "TBD" else ""
     page_title = "%s%s — %s" % (c["title"], number, c["term"])
 
+    # Nav order mirrors the order sections appear on the page.
     show = getattr(content, "SHOW", {})
-    nav = [("About", "#about")]
+    nav = [("About", "#about"), ("Instructor", "#instructor")]
+    if show.get("audience"):
+        nav.append(("Audience", "#audience"))
     if show.get("outline"):
         nav.append(("Outline", "#outline"))
     if show.get("logistics"):
@@ -253,7 +256,7 @@ def build():
         nav.append(("Speakers", "#speakers"))
     if show.get("project"):
         nav.append(("Project", "#project"))
-    nav += [("Readings", "#readings"), ("Instructor", "#instructor")]
+    nav.append(("Readings", "#readings"))
     navhtml = "".join('<a href="%s">%s</a>' % (h, t) for t, h in nav)
 
     outline_section = ""
@@ -286,6 +289,20 @@ def build():
             paragraphs(content.PREREQS),
             render_grading(),
         )
+
+    audience_section = ""
+    if show.get("audience"):
+        rows = "".join(
+            '<div class="fact"><dt>%s</dt><dd>%s</dd></div>'
+            % (html.escape(label), md(text))
+            for label, text in content.AUDIENCE
+        )
+        audience_section = """
+  <section id="audience">
+    <h2 class="rule">Audience and prerequisites</h2>
+    <dl class="facts">%s</dl>
+  </section>
+""" % rows
 
     speakers_section = ""
     if show.get("speakers"):
@@ -336,10 +353,16 @@ def build():
   <section id="about">
     <h2 class="rule">About the course</h2>
     {description}
+    {description_after}
     <p class="lead-in">{lead_in}</p>
     <ul class="questions">{questions}</ul>
-    {description_after}
   </section>
+
+  <section id="instructor">
+    <h2 class="rule">Instructor</h2>
+    {instructor_block}
+  </section>
+{audience_section}
 
 {outline_section}{logistics_section}{speakers_section}{project_section}
   <section id="readings">
@@ -347,11 +370,6 @@ def build():
     <p class="section-note">If any of the following looks interesting, this is the
     right class for you.</p>
     <ol class="bibliography">{bibliography}</ol>
-  </section>
-
-  <section id="instructor">
-    <h2 class="rule">Instructor</h2>
-    {instructor_block}
   </section>
 
 </main>
@@ -450,6 +468,7 @@ def build():
         description_after=paragraphs(getattr(content, "DESCRIPTION_AFTER", "")),
         outline_section=outline_section,
         logistics_section=logistics_section,
+        audience_section=audience_section,
         speakers_section=speakers_section,
         project_section=project_section,
         bibliography=render_bibliography(),
