@@ -40,7 +40,8 @@ INSTRUCTOR = {
 # below — flip "outline" to True to bring it back once the schedule is final.
 SHOW = {
     "outline": False,
-    "logistics": False,   # facts table, prerequisites, grading, guest speakers
+    "logistics": False,   # facts table, prerequisites, grading
+    "speakers": True,
     "project": True,
 }
 
@@ -110,6 +111,12 @@ GRADING = [
 ]
 
 PROJECT = """
+TBD.
+"""
+
+# Not shown. Kept here as a starting point for when the project spec is written —
+# move any of it into PROJECT above to publish it.
+PROJECT_DRAFT = """
 The final project is an original piece of analysis on some aspect of AI's
 trajectory or its economic impact. Strong projects typically do one of:
 
@@ -442,9 +449,8 @@ UNITS = [
 # --------------------------------------------------------------------------
 
 SPEAKERS_NOTE = (
-    "We aim to host several guest speakers from frontier labs, forecasting "
-    "organizations, and startups. Confirmed speakers will be listed here as they "
-    "are scheduled."
+    "We aim to host several guest speakers from frontier labs and other AI "
+    "organizations. Confirmed speakers will be listed here as they are scheduled."
 )
 
 SPEAKERS = [

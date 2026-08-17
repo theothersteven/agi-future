@@ -168,11 +168,11 @@ def render_schedule():
 
 
 def render_bibliography():
-    """Every reading, newest first. Flip reverse=False for oldest first."""
+    """Every reading in chronological order. Flip reverse=True for newest first."""
     keys = sorted(
         content.READINGS,
         key=lambda k: (content.READINGS[k]["date"], content.READINGS[k]["title"]),
-        reverse=True,
+        reverse=False,
     )
     return "".join(render_reading(k) for k in keys)
 
@@ -249,6 +249,8 @@ def build():
         nav.append(("Outline", "#outline"))
     if show.get("logistics"):
         nav.append(("Logistics", "#logistics"))
+    if show.get("speakers"):
+        nav.append(("Speakers", "#speakers"))
     if show.get("project"):
         nav.append(("Project", "#project"))
     nav += [("Readings", "#readings"), ("Instructor", "#instructor")]
@@ -278,16 +280,21 @@ def build():
 
     <h3 class="sub">Grading</h3>
     <div class="grading">%s</div>
-
-    <h3 class="sub">Guest speakers</h3>
-    %s
   </section>
 """ % (
             render_facts(),
             paragraphs(content.PREREQS),
             render_grading(),
-            render_speakers(),
         )
+
+    speakers_section = ""
+    if show.get("speakers"):
+        speakers_section = """
+  <section id="speakers">
+    <h2 class="rule">Guest speakers</h2>
+    %s
+  </section>
+""" % render_speakers()
 
     project_section = ""
     if show.get("project"):
@@ -333,12 +340,11 @@ def build():
     <ul class="questions">{questions}</ul>
   </section>
 
-{outline_section}{logistics_section}{project_section}
+{outline_section}{logistics_section}{speakers_section}{project_section}
   <section id="readings">
     <h2 class="rule">Readings</h2>
-    <p class="section-note">The pool the course draws from, newest first. Not
-    everything here will be assigned — but if any of it looks interesting, this is
-    the right class for you.</p>
+    <p class="section-note">If any of the following looks interesting, this is the
+    right class for you.</p>
     <ol class="bibliography">{bibliography}</ol>
   </section>
 
@@ -437,6 +443,7 @@ def build():
         questions="".join("<li>%s</li>" % md(q) for q in content.QUESTIONS),
         outline_section=outline_section,
         logistics_section=logistics_section,
+        speakers_section=speakers_section,
         project_section=project_section,
         bibliography=render_bibliography(),
         instructor_block=render_instructor(),
