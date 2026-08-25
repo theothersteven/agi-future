@@ -30,9 +30,9 @@ INSTRUCTOR = {
     "twitter": "https://x.com/stevenydc",   # shown as @stevenydc
     "url": "",                              # optional homepage
     "bio": (
-        "I lead Midtraining and STEM RL at SpaceXAI. Previously I led the Meta "
-        "Learning team at OpenAI. Before that I did High Frequency Trading at "
-        "Hudson River Trading."
+        "Steven leads Midtraining and STEM RL at SpaceXAI. Previously, he led "
+        "the Meta Learning team at OpenAI. Before that, he did high-frequency "
+        "trading at Hudson River Trading."
     ),
 }
 
