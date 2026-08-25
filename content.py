@@ -12,7 +12,7 @@ Blank lines separate paragraphs in multi-paragraph fields.
 # --------------------------------------------------------------------------
 
 COURSE = {
-    "number": "TBD",                       # e.g. "IEOR E4650"
+    "number": "COMS 6998 E018",                       # e.g. "IEOR E4650"
     "title": "Anticipating Our AGI Future",
     "tagline": "",                         # subtitle under the title; "" hides it
     "term": "Fall 2026",
@@ -73,8 +73,8 @@ There is a lot of excitement and concerns around the rate of progress in AI syst
 LEAD_IN = "Questions we will potentially explore together:"
 
 QUESTIONS = [
+    "What are scaling laws, and why are we building so many datacenters?",
     "How much of the world is using AI, and how much has not used AI?",
-    "How many datacenters are we building? Will space datacenters be a real thing?",
     "How fast will AI systems improve? What are the bottlenecks?",
     "What does the future of work look like? Will human labor be optional?",
     "What is RSI, and what does it mean for AI progress?",
