@@ -138,6 +138,11 @@ code {
 
 main section { margin-bottom: 4.25rem; }
 
+.registration {
+  margin: 0 0 2rem;
+  color: var(--ink);
+}
+
 /* Section headers are the only grey prose on the page; everything a visitor
    actually reads is --ink. Metadata (dates, bylines, footer) stays muted. */
 h2.rule {

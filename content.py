@@ -24,6 +24,9 @@ COURSE = {
     ),
 }
 
+# Shown as a visible, clickable registration link above the About section.
+REGISTRATION_URL = "https://vergil.columbia.edu/vergil/course/20263/73055/19580"
+
 INSTRUCTOR = {
     "name": "Steven Yin",
     "email": "sy2737@columbia.edu",

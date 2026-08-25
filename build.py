@@ -350,6 +350,8 @@ def build():
 
   {notices}
 
+  <p class="registration">Registration: <a href="{registration_url}">{registration_url}</a></p>
+
   <section id="about">
     <h2 class="rule">About the course</h2>
     {description}
@@ -462,6 +464,7 @@ def build():
         meta=html.escape(c["meta_description"]),
         nav=navhtml,
         notices=render_notices(),
+        registration_url=html.escape(content.REGISTRATION_URL),
         description=paragraphs(content.DESCRIPTION),
         lead_in=md(getattr(content, "LEAD_IN", "")),
         questions="".join("<li>%s</li>" % md(q) for q in content.QUESTIONS),
