@@ -84,15 +84,21 @@ def pretty_date(iso):
 
 
 def render_reading(key):
-    """Reading list rows: date, then the title as the link. No authors."""
+    """Reading list rows: date, then the linked title followed by its authors."""
     r = content.READINGS[key]
+    byline = (
+        ' <span class="byline">— %s</span>' % html.escape(r["authors"])
+        if r.get("authors") else ""
+    )
     return (
         '<li><span class="refdate">%s</span>'
-        '<a class="reftitle" href="%s">%s</a></li>'
+        '<span class="refdetails"><a class="reftitle" href="%s">%s</a>'
+        '%s</span></li>'
         % (
             html.escape(pretty_date(r["date"])),
             html.escape(r["url"]),
             html.escape(r["title"]),
+            byline,
         )
     )
 

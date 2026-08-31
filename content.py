@@ -166,7 +166,7 @@ READINGS = {
         "date": "2026-07",
         "title": "AI 2040: Plan A",
         "url": "https://ai-2040.com/",
-        "authors": "AI Futures Project",
+        "authors": "Larsen et al.",
     },
     "rsi": {
         "date": "2026-07",
@@ -190,13 +190,13 @@ READINGS = {
         "date": "2026-04",
         "title": "When Does Automating AI Research Produce Explosive Growth?",
         "url": "https://thomas-houlden.com/assets/Davidson,%20Halperin,%20Houlden,%20and%20Korinek%20(2026).pdf",
-        "authors": "Davidson, Halperin, Houlden & Korinek",
+        "authors": "Davidson et al.",
     },
     "openrouter": {
         "date": "2026-01",
         "title": "State of AI: An Empirical 100 Trillion Token Study with OpenRouter",
         "url": "https://arxiv.org/abs/2601.10088",
-        "authors": "Aubakirova, Atallah, Clark, Summerville & Midha",
+        "authors": "Aubakirova et al.",
     },
     "capital22": {
         "date": "2025-12",
@@ -232,7 +232,7 @@ READINGS = {
         "date": "2025-07",
         "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
         "url": "https://arxiv.org/abs/2507.09089",
-        "authors": "METR",
+        "authors": "Becker et al. (METR)",
     },
     "ai2027": {
         "date": "2025-04",
@@ -256,7 +256,7 @@ READINGS = {
         "date": "2025-03",
         "title": "Measuring AI Ability to Complete Long Tasks",
         "url": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
-        "authors": "METR",
+        "authors": "Kwa et al. (METR)",
     },
     "jones_dilemma": {
         "date": "2023-11",
