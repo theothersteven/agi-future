@@ -150,6 +150,18 @@ presentation in the final weeks. Groups of one to three. Details will be posted 
 # --------------------------------------------------------------------------
 
 READINGS = {
+    "ai_productivity": {
+        "date": "2026-08-28",
+        "title": "Understanding AI and Productivity",
+        "url": "https://agglomerations.eig.org/p/understanding-ai-and-productivity",
+        "authors": "Chad Syverson",
+    },
+    "hugging_face_incident": {
+        "date": "2026-08-26",
+        "title": "The Hugging Face incident and the road ahead",
+        "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+        "authors": "OpenAI",
+    },
     "ai2040": {
         "date": "2026-07",
         "title": "AI 2040: Plan A",
